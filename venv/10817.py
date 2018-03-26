@@ -1,16 +1,15 @@
-# 시험 점수를 입력받아 90 ~ 100점은 A, 80 ~ 89점은 B, 70 ~ 79점은 C, 60 ~ 69점은 D, 나머지 점수는 F를 출력하는 프로그램을 작성하시오.
+# 세 정수 A, B, C가 주어진다. 이 때, 두 번째로 큰 정수를 출력하는 프로그램을 작성하시오.
 
 import sys
 
-a = int(sys.stdin.readline())
+first, second, third = sys.stdin.readline().split()
 
-if a >= 90:
-    print('A')
-elif a >=80:
-    print('B')
-elif a >= 70:
-    print('C')
-elif a >= 60:
-    print('D')
-else:
-    print('F')
+first = int(first)
+second = int(second)
+third = int(third)
+
+a = [first, second, third]
+
+a.sort()
+
+print(a[len(a)-2])

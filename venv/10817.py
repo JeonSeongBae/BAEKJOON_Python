@@ -12,4 +12,4 @@ a = [first, second, third]
 
 a.sort()
 
-print(a[len(a)-2])
+print(a[len(a) - 2])

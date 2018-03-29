@@ -7,9 +7,9 @@ class Node:
     element = None
     next = None
 
-    def __init__(self, element, next):
+    def __init__(self, element):
         self.element = element
-        self.next = next
+        self.next = None
         return
 
     def setNext(self, next):
@@ -28,16 +28,31 @@ class Node:
 
 class LinkedList:
     head = None
+    tail = None
     size = 0
 
     def add(self, node):
         if self.size == 0:
             self.head = node
+            self.tail = node
         else:
             node.setNext(self.head)
             self.head = node
+            self.tail.setNext(self.head)
 
         self.size += 1
+
+    def remove_circle(self, index):
+        temp = index % self.size
+        remove_element = self.remove(temp)
+
+        node = self.head
+        for i in range(temp):
+            node = node.getNext()
+
+        self.head = node
+
+        return remove_element
 
     def remove(self, index):
         if index > self.size:
@@ -52,33 +67,48 @@ class LinkedList:
 
             if previous == None:
                 if node.getNext() == None:
+                    remove_element = self.head.getElement()
                     self.head = None
                 else:
+                    remove_element = node.getElement()
                     self.head = node.getNext()
 
             else:
                 if node.getNext() == None:
+                    remove_element = node.getElement()
                     previous.setNext(None)
                 else:
+                    remove_element = node.getElement()
                     previous.setNext(node.getNext())
             self.size -= 1
+            return remove_element
 
     def  __repr__(self):
-        result = "[ "
+        result = "< "
         node = self.head
         for i in range(0, self.getSize()):
             result += str(node.getElement()) + " "
             node = node.getNext()
 
-        return result + "]"
+        return result + ">"
 
     def getSize(self):
         return self.size
 
-
 list = LinkedList()
-n = Node(7,None)
-list.add(n)
-list.add(Node(8,None))
-list.remove(0)
-print(list)
+temp = input().split(" ")
+input_num = int(temp[0])
+remove_num = int(temp[1])
+
+for i in range(input_num):
+    list.add(Node(input_num - i))
+
+result = "<"
+for i in range(1, input_num):
+    removed = list.remove_circle(remove_num-1)
+    result += str(removed) + ", "
+
+removed = list.remove_circle(remove_num-1)
+result += str(removed) + "> "
+print(result)
+

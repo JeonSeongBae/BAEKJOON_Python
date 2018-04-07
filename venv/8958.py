@@ -6,8 +6,14 @@
 
 size = int(input())
 
-for i in range(size):
-    result = 0
+for i in range(size+1):
+    result = 1
+    score = 0
     OX = str(input())
-    if(OX[i] is O):
-        print(O)
+    for j in range(len(OX)):
+        if(OX[j] is 'O'):
+            score += result
+            result += 1
+        elif(OX[j] is 'X'):
+            result = 1
+    print(score)

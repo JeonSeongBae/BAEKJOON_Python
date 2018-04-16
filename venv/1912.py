@@ -3,24 +3,18 @@
 # 백준 알고리즘 1912번
 # 연속합
 
-all = int(input())
-
-numbers = list(input().split())
+N = int(input())
+numbers = [int(i) for i in input().split()]
 
 print(numbers)
 
-max_first = 0
-max_last = 0
+max_value = 0
 
-max = 0
+for i in range(N):
+    temp = 0
+    for k in range(i, N):
+        temp += numbers[k]
 
-sy = []
+        max_value = max(max_value, temp)
 
-for i in range(1, all):
-    if numbers[i-1] >= 0 and numbers[i] >= 0:
-        max += numbers[i]
-    else:
-        max_last = i
-        sy.append([max_first, max_last, max])
-        max_first = i
-        max = 0
+print(max_value)

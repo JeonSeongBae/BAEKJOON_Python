@@ -38,10 +38,9 @@ else:
             else:
                 plus = True
                 minus = False
-
             sum_numbers.append(temp)
             temp = numbers[i]
-    sum_numbers.append(numbers[N-1])
+    sum_numbers.append(temp)
 
     temp = 0
     temp_numbers = []
@@ -67,4 +66,6 @@ else:
     else:
         temp_numbers.append(temp + last)
 
+    # print(sum_numbers)
+    # print(temp_numbers)
     print(max(temp_numbers))

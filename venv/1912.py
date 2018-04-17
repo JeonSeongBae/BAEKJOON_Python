@@ -3,6 +3,34 @@
 # 백준 알고리즘 1912번
 # 연속합
 
+
+def make_array(array):
+    if len(array) <= 2:
+        return array
+
+    length = int(len(array)/2)
+    count = 0
+    result = []
+    i = 1
+    while i < length:
+        index = i * 2 + 1
+        if array[index - 1] + array[index] > 0 and array[index] + array[index+1] > 0:
+            result.append(array[index - 1] + array[index] + array[index + 1])
+            i += 2
+            count += 1
+        else:
+            result.append(array[index - 1])
+            result.append(array[index])
+            if i == length-1:
+                result.append(array[index + 1])
+            i += 1
+
+    if count is 0:
+        return array
+    else:
+        return make_array(result)
+
+
 N = int(input())
 numbers = [int(i) for i in input().split()]
 
@@ -21,50 +49,29 @@ if smallest_num >= 0:
     print(sum(numbers))
 # 2) 음수가 있을 때
 else:
-    if numbers[0] >= 0:
-        plus = True
-    else:
-        minus = True
+    plus = 0
+    minus = 0
 
     for i in range(N):
-        if numbers[i] >= 0 and plus:
-            temp += numbers[i]
-        elif numbers[i] < 0 and minus:
-            temp += numbers[i]
+        if numbers[i] > 0:
+            plus += numbers[i]
+            if minus != 0:
+                sum_numbers.append(minus)
+                minus = 0
         else:
-            if plus:
-                plus = False
-                minus = True
-            else:
-                plus = True
-                minus = False
+            minus += numbers[i]
+            if plus != 0:
+                sum_numbers.append(plus)
+                plus = 0
 
-            sum_numbers.append(temp)
-            temp = numbers[i]
-    sum_numbers.append(numbers[N-1])
+    if plus != 0:
+        sum_numbers.append(plus)
+    if len(sum_numbers) > 1 and sum_numbers[0] < 0:
+        sum_numbers.pop(0)
 
-    temp = 0
-    temp_numbers = []
-    if sum_numbers[0] < 0:
-        index = 1
+    if len(sum_numbers) == 0:
+        print(max(numbers))
     else:
-        index = 0
+        print(max(make_array(sum_numbers)))
 
-    for i in range(index, len(sum_numbers)-1):
-        if sum_numbers[i] < 0:
-            if sum_numbers[i] + sum_numbers[i+1] > 0:
-                temp += sum_numbers[i]
-            else:
-                temp_numbers.append(temp)
-                temp_numbers.append(sum_numbers[i])
-                temp = 0
-        else:
-            temp += sum_numbers[i]
-    last = sum_numbers[len(sum_numbers)-1]
-    if last < 0:
-        temp_numbers.append(temp)
-        temp_numbers.append(last)
-    else:
-        temp_numbers.append(temp + last)
 
-    print(max(temp_numbers))

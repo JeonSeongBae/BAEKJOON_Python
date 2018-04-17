@@ -3,6 +3,34 @@
 # 백준 알고리즘 1912번
 # 연속합
 
+
+def make_array(array):
+    if len(array) <= 2:
+        return array
+
+    length = int(len(array)/2)
+    count = 0
+    result = []
+    i = 1
+    while i < length:
+        index = i * 2 + 1
+        if array[index - 1] + array[index] > 0 and array[index] + array[index+1] > 0:
+            result.append(array[index - 1] + array[index] + array[index + 1])
+            i += 2
+            count += 1
+        else:
+            result.append(array[index - 1])
+            result.append(array[index])
+            if i == length-1:
+                result.append(array[index + 1])
+            i += 1
+
+    if count is 0:
+        return array
+    else:
+        return make_array(result)
+
+
 N = int(input())
 numbers = [int(i) for i in input().split()]
 
@@ -38,25 +66,12 @@ else:
 
     if plus != 0:
         sum_numbers.append(plus)
-    if sum_numbers[0] < 0:
+    if len(sum_numbers) > 1 and sum_numbers[0] < 0:
         sum_numbers.pop(0)
 
-    total = sum(sum_numbers)
-
-    array = []
-
-    temp = 0
-    temp_numbers = []
-    temp_2 = 0
-    for i in range(0, int(len(sum_numbers)/2)):
-        temp = 0
-        temp_numbers.append(0)
-        for k in range(i, int(len(sum_numbers)/2)):
-            temp_2 = temp_numbers[i] + sum_numbers[k] + sum_numbers[k + 1]
-            if temp_numbers[i] < temp_2:
-                temp_numbers[i] = temp_2
-
-    temp_numbers.append(sum_numbers[len(sum_numbers)-1])
-    print(max_value(temp_numbers))
+    if len(sum_numbers) == 0:
+        print(max(numbers))
+    else:
+        print(max(make_array(sum_numbers)))
 
 

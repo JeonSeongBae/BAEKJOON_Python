@@ -7,15 +7,17 @@
 # OX퀴즈의 결과가 주어졌을 때, 점수를 구하는 프로그램을 작성하시오.
 
 size = int(input())
+OX = []
+for i in range(size):
+   OX.append(input())
 
-for i in range(size+1):
+for i in range(size):
     result = 1
     score = 0
-    OX = str(input())
-    for j in range(len(OX)):
-        if(OX[j] is 'O'):
+    for j in range(len(OX[i])):
+        if(OX[i][j] is 'O'):
             score += result
             result += 1
-        elif(OX[j] is 'X'):
+        elif(OX[i][j] is 'X'):
             result = 1
     print(score)

@@ -24,7 +24,11 @@ for i in range(size):
 
 for i in range(size):
     floor = int(int(HWN[i][2]) % int(HWN[i][0]))
+    if (floor == 0):
+        floor = int(HWN[i][0])
     number = int(int(HWN[i][2]) / int(HWN[i][0])) + 1
+    if (int(int(HWN[i][2]) / int(HWN[i][0])) == 0):
+        number -= 1
     if number < 10:
         number = "0" + str(number)
     print(str(floor) + str(number))

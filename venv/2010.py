@@ -1,4 +1,5 @@
 # -*- Encoding:UTF-8 -*-
+import sys
 
 # 백준 알고리즘 2010번
 # 플러그
@@ -9,9 +10,6 @@
 
 
 N = int(input())
+total = [int(sys.stdin.readline()) for i in range(N)]
 
-total = 0
-for i in range(N):
-    total += int(input())
-
-print(total - N + 1)
+print(sum(total) - N + 1)

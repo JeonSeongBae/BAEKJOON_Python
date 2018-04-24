@@ -27,7 +27,7 @@ for i in range(size):
     if (floor == 0):
         floor = int(HWN[i][0])
     number = int(int(HWN[i][2]) / int(HWN[i][0])) + 1
-    if (int(int(HWN[i][2]) / int(HWN[i][0])) == 0):
+    if (int(int(HWN[i][2]) % int(HWN[i][0])) == 0):
         number -= 1
     if number < 10:
         number = "0" + str(number)

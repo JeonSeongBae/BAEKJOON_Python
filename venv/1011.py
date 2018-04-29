@@ -8,7 +8,15 @@
 # 김우현을 위해 x지점부터 정확히 y지점으로 이동하는데 필요한 공간 이동 장치 작동 횟수의 최소값을 구하는 프로그램을 작성하라.
 #
 
-input = int(input()) # 테스트 개수
+testsize = int(input()) # 테스트 개수
+distance = []
 
-for i in range(input): # 테스트 개수만큼 반복
-    
+
+for i in range(testsize): # 테스트 개수만큼 반복
+    distance.append(input().split(" "))
+
+for j in range(testsize):
+    offset = int(distance[j][1]) - int(distance[j][0])
+    print(count)
+
+

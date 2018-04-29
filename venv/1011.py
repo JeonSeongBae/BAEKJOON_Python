@@ -10,7 +10,9 @@
 
 testsize = int(input()) # 테스트 개수
 distance = []
-
+k = 1
+count = 0
+even = True
 
 for i in range(testsize): # 테스트 개수만큼 반복
     distance.append(input().split(" "))
@@ -18,5 +20,7 @@ for i in range(testsize): # 테스트 개수만큼 반복
 for j in range(testsize):
     offset = int(distance[j][1]) - int(distance[j][0])
     print(count)
+    k = 1
+    count = 0
 
 

@@ -19,6 +19,9 @@ for i in range(testsize): # 테스트 개수만큼 반복
 
 for j in range(testsize):
     offset = int(distance[j][1]) - int(distance[j][0])
+    while offset > 0:
+        offset -= k
+        count += 1
     print(count)
     k = 1
     count = 0

@@ -22,6 +22,11 @@ for j in range(testsize):
     while offset > 0:
         offset -= k
         count += 1
+        if even and count > 1:
+            k += 1
+            even = False
+        else:
+            even = True
     print(count)
     k = 1
     count = 0

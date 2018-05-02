@@ -30,5 +30,3 @@ for j in range(testsize):
     print(count)
     k = 1
     count = 0
-
-

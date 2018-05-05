@@ -14,6 +14,7 @@
 
 floor = []
 number = []
+
 people = [[1,2,3,4,5,6,7,8,9,10,11,12,13,14],[0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
 
 size = int(input())
@@ -21,9 +22,16 @@ for i in range(size):
     floor.append(input())
     number.append(input())
 
+people = [0 for i in range(0, max(floor))]
+
+a = max(floor)
+b = max(number)
+
 total = 0
-for i in range(1, 13):
-    for j in range(14):
-        total += people[i-1][j]
-        people[i][j] = total
-    total = 0
+for k in range(size):
+    for i in range(1, int(floor[k])+1):
+        for j in range(int(number[k])):
+            total += people[i-1][j]
+            people[i][j] = total
+        total = 0
+    print(people[int(floor[k])][int(number[k])-1])

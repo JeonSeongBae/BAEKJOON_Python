@@ -23,7 +23,7 @@ for i in range(size):
 for i in range(14):
     people[0][i] = int(i)+1
     people[i][0] = 1
-    
+
 for k in range(size):
     for i in range(1, 14):
         for j in range(1, 14):

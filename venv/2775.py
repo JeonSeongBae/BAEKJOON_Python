@@ -30,4 +30,4 @@ for k in range(size):
             people[i][j] = people[i][j-1]+people[i-1][j]
     a = int(floor[k])
     b = int(number[k])-1
-    print(people[a][b])
+    print(people)

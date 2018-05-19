@@ -10,6 +10,7 @@
 # 범위 : N개의 수들 중 최대값과 최소값의 차이
 # N개의 수가 주어졌을 때, 네 가지 기본 통계값을 구하는 프로그램을 작성하시오.
 #
+from collections import Counter
 
 size = int(input())
 array = []
@@ -22,37 +23,23 @@ print(int(round(sum / size, 0))) # 산술평균
 array.sort()
 print(array[int(size/2)]) # 중앙값
 
-temp = array[0]
-max = array.count(array[0])
-max2 = 0
-for i in range(1, size):
-    if temp == array[i]:
-        continue
-    else:
-        if max <= array.count(array[i]):
-            max2 = max
-            max = array.count(array[i])
-        temp = array[i]
-
+cnt = Counter(array)
+temp = cnt.most_common()
+max = temp[0][1]
+freq = []
+first = False
 second = False
-if max == max2:
-    for i in range(0, size):
-        if temp == array[i]:
-            continue
+for i in temp:
+    if max == i[1]:
+        freq.append(int(i[0]))
+        if first:
+            second = True
         else:
-            if second:
-                print(array[i])
-                break
-            else:
-                second = True
-            temp = array[i]
+            first = True
+
+if second:
+    freq.sort()
+    print(freq[1])
 else:
-    for i in range(1, size):
-        if temp == array[i]:
-            continue
-        else:
-            if max == array.count(array[i]):
-                print(array[i])
-                break
-            temp = array[i]
+    print(freq[0])
 print(array[len(array)-1]-array[0])

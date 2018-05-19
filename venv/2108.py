@@ -39,7 +39,7 @@ for i in range(1, size):
 
 second = False
 if max == max2:
-    for i in range(1, size):
+    for i in range(0, size):
         if temp == array[i]:
             continue
         else:

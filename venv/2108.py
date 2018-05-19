@@ -13,17 +13,14 @@
 
 size = int(input())
 array = []
-
+sum = 0
 for i in range(0, size):
     array.append(int(input()))
-
-sum = 0
-for i in array:
-    sum += i
-print(int(round(sum / size, 1)))
+    sum += array[i]
+print(int(round(sum / size, 0))) # 산술평균
 
 array.sort()
-print(array[int(size/2)])
+print(array[int(size/2)]) # 중앙값
 
 temp = array[0]
 max = array.count(array[0])

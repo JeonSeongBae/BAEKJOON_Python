@@ -11,4 +11,5 @@ for i in range(size):
 def strange_sort(strings):
     return sorted(strings, key=lambda strings:(len(strings), strings))
 
+inputString = list(set(inputString))
 print(strange_sort(inputString))
